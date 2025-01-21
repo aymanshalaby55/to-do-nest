@@ -14,7 +14,6 @@ import { LoginDto } from './dto/login.dto';
 import { JwtGuard } from './auth.guard';
 import { Response } from 'express';
 import { CookiesInterceptor } from 'src/common/cookies.interceptor';
-import { CacheInterceptor, CacheKey, CacheTTL } from '@nestjs/cache-manager';
 
 @Controller('auth')
 export class AuthController {
@@ -42,8 +41,6 @@ export class AuthController {
     }
   }
   @UseGuards(JwtGuard)
-  @CacheKey('my-key')
-  @CacheTTL(10000)
   @Get('user/:id')
   async getUser(@Param('id') id: number) {
     return this.authService.getUser(+id);
