@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ListService } from './list.service';
 import { CreateListDto } from './dto/createList.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { getUser } from '../auth/decorator/getUser.decorator';
+import { getUser } from '../common/decorator/getUser.decorator';
 import { UserIdDto } from 'src/task/dto/userID.dto';
 
 @Controller('list')

@@ -9,12 +9,17 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         ExtractJwt.fromAuthHeaderAsBearerToken(),
+        (req: { cookies: { [x: string]: any } }) => {
+          let token = null;
+          if (req && req.cookies) {
+            token = req.cookies['jwt'];
+          }
+          return token;
+        },
       ]),
       secretOrKey: configService.get('JWT_SECRET'),
       ignoreExpiration: false,
     });
-
-    console.log(configService.get('JWT_SECRET'));
   }
 
   validate(payload: any) {

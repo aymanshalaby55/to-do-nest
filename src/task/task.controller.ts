@@ -12,7 +12,7 @@ import {
 import { TaskService } from './task.service';
 import { AddTaskDto } from './dto/addTask.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { getUser } from 'src/auth/decorator/getUser.decorator';
+import { getUser } from 'src/common/decorator/getUser.decorator';
 import { UserIdDto } from './dto/userID.dto';
 
 @Controller('task')
