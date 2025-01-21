@@ -28,7 +28,6 @@ export class AuthController {
       throw error; // Let NestJS handle the exception
     }
   }
-
   @Post('login')
   @UseInterceptors(CookiesInterceptor)
   async login(@Body() data: LoginDto) {
