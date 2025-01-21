@@ -7,6 +7,7 @@ import {
   UseGuards,
   Res,
   UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
@@ -33,15 +34,15 @@ export class AuthController {
   async login(@Body() data: LoginDto) {
     try {
       const { access_token } = await this.authService.login(data);
-
       return access_token;
     } catch (error) {
       throw error; // Let NestJS handle the exception
     }
   }
+
   @UseGuards(JwtGuard)
   @Get('user/:id')
-  async getUser(@Param('id') id: number) {
+  async getUser(@Param('id', ParseIntPipe) id: number) {
     return this.authService.getUser(+id);
   }
 }
